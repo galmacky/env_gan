@@ -7,6 +7,7 @@ Training & Test data processing:
 - fire: image files that contain fire
   - firedetectionnet: curated samples from
 https://www.pyimagesearch.com/2019/11/18/fire-and-smoke-detection-with-keras-and-deep-learning/ (only 6 meet our criteria out of the first 100 images (in total 1400+ images)
+  - firenet: curated samples from https://github.com/OlafenwaMoses/FireNET
 
 Data Collection Methodology for 'matched':
 - Go to google.com and search 'california wildfire before and after'
