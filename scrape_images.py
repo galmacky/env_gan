@@ -5,6 +5,7 @@ import requests
 import shutil
 import os
 import argparse
+import re
 
 # Discussion with source: https://gist.github.com/genekogan/ebd77196e4bf0705db51f86431099e57
 
@@ -13,7 +14,7 @@ import argparse
 
 def save_img(inp,img,i, directory):
   try:
-    filename = inp+str(i)+'.jpg'
+    filename = re.sub(r"\s+", '_', inp)+str(i)+'.jpg'
     response = requests.get(img,stream=True)
     image_path = os.path.join(directory, filename)
     with open(image_path, 'wb') as file:
