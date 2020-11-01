@@ -4,7 +4,7 @@ import time
 import os
 import argparse
 import re
-import urllib
+import urllib.request
 import socket
 
 # Discussion with source: https://gist.github.com/genekogan/ebd77196e4bf0705db51f86431099e57
@@ -17,9 +17,11 @@ def save_img(inp,img,i, directory):
 
   try:
     filename = re.sub(r"\s+", '_', inp)+str(i)+'.jpg'
-    urllib.request.urlretrieve(img, filename)
+    image_path = os.path.join(directory, filename)
+    urllib.request.urlretrieve(img, image_path)
     print('Saved image:', filename)
-  except Exception:
+  except Exception as e:
+    print(e)
     pass
 
 def find_urls(inp,url,driver, directory, num_images=10):
