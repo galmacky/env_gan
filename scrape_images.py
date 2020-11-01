@@ -71,6 +71,9 @@ if __name__ == "__main__":
   num_images = args.num_images
   if not os.path.isdir(directory):
     os.makedirs(directory)
-  url = 'https://www.google.com/search?q='+str(inp)+'&source=lnms&tbm=isch&sa=X&ved=2ahUKEwie44_AnqLpAhUhBWMBHUFGD90Q_AUoAXoECBUQAw&biw=1920&bih=947&tbs=ic:specific%2Cisc:orange%2Cisz:l'
+  if 'fire' in inp:
+    url = 'https://www.google.com/search?q='+str(inp)+'&source=lnms&tbm=isch&sa=X&ved=2ahUKEwie44_AnqLpAhUhBWMBHUFGD90Q_AUoAXoECBUQAw&biw=1920&bih=947&tbs=ic:specific%2Cisc:orange%2Cisz:l'
+  else:
+    url = 'https://www.google.com/search?q='+str(inp)+'&source=lnms&tbm=isch&sa=X&ved=2ahUKEwie44_AnqLpAhUhBWMBHUFGD90Q_AUoAXoECBUQAw&biw=1920&bih=947&tbs=isz:l'
   find_urls(inp,url,driver, directory, num_images)
   print('Finished scraping!')
