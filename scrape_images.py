@@ -1,11 +1,11 @@
 from selenium import webdriver
 from PIL import Image
 import time
-import requests
-import shutil
 import os
 import argparse
 import re
+import urllib
+import socket
 
 # Discussion with source: https://gist.github.com/genekogan/ebd77196e4bf0705db51f86431099e57
 
@@ -13,12 +13,11 @@ import re
 # ChromeDriver explanation: https://stackoverflow.com/questions/42478591/python-selenium-chrome-webdriver
 
 def save_img(inp,img,i, directory):
+  socket.setdefaulttimeout(5)
+
   try:
     filename = re.sub(r"\s+", '_', inp)+str(i)+'.jpg'
-    response = requests.get(img,stream=True)
-    image_path = os.path.join(directory, filename)
-    with open(image_path, 'wb') as file:
-      shutil.copyfileobj(response.raw, file)
+    urllib.request.urlretrieve(img, filename)
     print('Saved image:', filename)
   except Exception:
     pass
@@ -34,16 +33,21 @@ def find_urls(inp,url,driver, directory, num_images=10):
       continue
   print('Saving images..')
   for j, imgurl in enumerate(driver.find_elements_by_xpath('//img[contains(@class,"rg_i Q4LuWd")]')):
+    print('{}-th image'.format(j))
     try:
       if j >= num_images:
         return
+      print('clicking')
       imgurl.click()
+      print('finding element')
       img = driver.find_element_by_xpath('//body/div[2]/c-wiz/div[3]/div[2]/div[3]/div/div/div[3]/div[2]/c-wiz/div[1]/div[1]/div/div[2]/a/img').get_attribute("src")
+      print('saving image')
       save_img(inp,img,j, directory)
       time.sleep(1.5)
     except:
       pass
-            
+
+
 if __name__ == "__main__":
   print('Starting scraper...')
   parser = argparse.ArgumentParser(description='Scrape Google images')
