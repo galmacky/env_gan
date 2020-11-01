@@ -34,7 +34,7 @@ if __name__ == "__main__":
     flipped_img.save(os.path.join(output_dir, str(counter)+'_flipped.png'))
     flipped_ccw_img.save(os.path.join(output_dir, str(counter)+'_ccw10_flipped.png'))
     flipped_cw_img.save(os.path.join(output_dir, str(counter)+'_cw10_flipped.png'))
-    break
+
     counter += 1
 
   print('Finished image processing!')
