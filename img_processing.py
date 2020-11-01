@@ -21,10 +21,20 @@ if __name__ == "__main__":
     output_filename = str(counter)+'.png'
     img.save(os.path.join(output_dir, output_filename))
 
+    # Rotate image
+    rotate_ccw_img = img.rotate(10, expand=True)
+    rotate_cw_img = img.rotate(-10, expand=True)
+    rotate_ccw_img.save(os.path.join(output_dir, str(counter)+'_ccw10.png'))
+    rotate_cw_img.save(os.path.join(output_dir, str(counter)+'_cw10.png'))
+
     # Flip image horizontally
-    flipped_filename = str(counter)+'_flipped.png'
     flipped_img = img.transpose(Image.FLIP_LEFT_RIGHT)
-    flipped_img.save(os.path.join(output_dir, flipped_filename))
+    flipped_ccw_img = rotate_ccw_img.transpose(Image.FLIP_LEFT_RIGHT)
+    flipped_cw_img = rotate_cw_img.transpose(Image.FLIP_LEFT_RIGHT)
+    flipped_img.save(os.path.join(output_dir, str(counter)+'_flipped.png'))
+    flipped_ccw_img.save(os.path.join(output_dir, str(counter)+'_ccw10_flipped.png'))
+    flipped_cw_img.save(os.path.join(output_dir, str(counter)+'_cw10_flipped.png'))
+    break
     counter += 1
 
   print('Finished image processing!')
