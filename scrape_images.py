@@ -53,16 +53,16 @@ def find_urls(inp,url,driver, directory, num_images=10):
 if __name__ == "__main__":
   print('Starting scraper...')
   parser = argparse.ArgumentParser(description='Scrape Google images')
-  parser.add_argument('-s', '--search', default='bananas', type=str, help='search term')
-  parser.add_argument('-d', '--directory', default='../Downloads/', type=str, help='save directory')
-  parser.add_argument('-n', '--num_images', default=10, type=int, help='number of images to save')
+  parser.add_argument('-s', '--search', default='california+house+fire', type=str, help='search term')
+  parser.add_argument('-d', '--directory', default='../', type=str, help='save directory')
+  parser.add_argument('-n', '--num_images', default=200, type=int, help='number of images to save')
   args = parser.parse_args()
-  driver = webdriver.Chrome('/home/minh/Downloads/chromedriver_linux64/chromedriver')
+  driver = webdriver.Chrome('../chromedriver')
   directory = args.directory
   inp = args.search
   num_images = args.num_images
   if not os.path.isdir(directory):
     os.makedirs(directory)
-  url = 'https://www.google.com/search?q='+str(inp)+'&source=lnms&tbm=isch&sa=X&ved=2ahUKEwie44_AnqLpAhUhBWMBHUFGD90Q_AUoAXoECBUQAw&biw=1920&bih=947'
+  url = 'https://www.google.com/search?q='+str(inp)+'&source=lnms&tbm=isch&sa=X&ved=2ahUKEwie44_AnqLpAhUhBWMBHUFGD90Q_AUoAXoECBUQAw&biw=1920&bih=947&tbs=ic:specific%2Cisc:orange%2Cisz:l'
   find_urls(inp,url,driver, directory, num_images)
   print('Finished scraping!')
