@@ -61,11 +61,12 @@ def find_urls(inp,url,driver, directory, num_images=10):
 if __name__ == "__main__":
   print('Starting scraper...')
   parser = argparse.ArgumentParser(description='Scrape Google images')
-  parser.add_argument('-s', '--search', default='california+house+fire', type=str, help='search term')
+  parser.add_argument('-s', '--search', default='oregon+house', type=str, help='search term')
   parser.add_argument('-d', '--directory', default='../', type=str, help='save directory')
   parser.add_argument('-n', '--num_images', default=200, type=int, help='number of images to save')
+  parser.add_argument('-c', '--chromedriver_dir', default='../chromedriver', type=str, help='chromedriver dir')
   args = parser.parse_args()
-  driver = webdriver.Chrome('../chromedriver')
+  driver = webdriver.Chrome(args.chromedriver_dir)
   directory = args.directory
   inp = args.search
   num_images = args.num_images
